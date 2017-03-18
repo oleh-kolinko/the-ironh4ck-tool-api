@@ -8,7 +8,8 @@ const layouts      = require('express-ejs-layouts');
 const mongoose     = require('mongoose');
 
 
-mongoose.connect('mongodb://localhost/the-ironh4ck-tech-tool-api');
+mongoose.connect(process.env.MONGODB_URI);
+// mongoose.connect('mongodb://localhost/the-ironh4ck-tech-tool-api');
 
 const app = express();
 
