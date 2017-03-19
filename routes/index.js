@@ -3,7 +3,7 @@ const router  = express.Router();
 const Student = require('../models/student');
 const Question = require('../models/question');
 
-/* GET home page. */
+/* GET list of students. */
 router.get('/students', (req, res, next) => {
 
   Student.find({}, (err,result)=>{
@@ -14,6 +14,8 @@ router.get('/students', (req, res, next) => {
   });
 });
 
+
+/* GET list of questions. */
 router.get('/questions', (req, res, next) => {
 
   Question.find({}, (err,result)=>{
@@ -24,16 +26,29 @@ router.get('/questions', (req, res, next) => {
   });
 });
 
+/* Create new question. */
 router.post('/questions', (req,res,next)=>{
-
-  let newQuestions= new Question({
+  let newQuestion= new Question({
     message: req.body.message,
     author: req.body.author,
   });
-
-  newQuestions.save((err)=>{
+  newQuestion.save((err, result)=>{
     if(err) return next(err);
+    res.send(result);
   });
+});
+
+/* Delete question. */
+router.post('/questions/delete/:id', (req,res,next)=>{
+  const id = req.params.id;
+  Question.findByIdAndRemove(id, (err, result)=>{
+    if(err) return next(err);
+    res.send(result);
+  });
+});
+
+router.get('/', (req,res,next)=>{
+  res.render('index');
 });
 
 module.exports = router;
