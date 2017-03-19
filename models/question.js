@@ -10,4 +10,4 @@ questionSchema.set('timestamps', true);
 
 const Question = mongoose.model('Question', questionSchema);
 
-module.exports = Exercise;
+module.exports = Question;

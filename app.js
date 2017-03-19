@@ -7,6 +7,9 @@ const bodyParser   = require('body-parser');
 const layouts      = require('express-ejs-layouts');
 const mongoose     = require('mongoose');
 
+//Require enviromental variables
+const dotenv = require('dotenv');
+dotenv.config();
 
 mongoose.connect(process.env.MONGODB_URI);
 // mongoose.connect('mongodb://localhost/the-ironh4ck-tech-tool-api');
