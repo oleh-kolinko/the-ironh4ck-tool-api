@@ -28,7 +28,7 @@ router.post('/questions', (req,res,next)=>{
 
   let newQuestions= new Question({
     message: req.body.message,
-    author: req.user.author,
+    author: req.body.author,
   });
 
   newQuestions.save((err)=>{
